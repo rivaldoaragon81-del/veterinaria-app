@@ -1,0 +1,71 @@
+<h2>Atención Médica</h2>
+
+<h3>Citas Programadas</h3>
+
+<table border="1">
+
+  <tr>
+    <th>Mascota</th>
+    <th>Veterinario</th>
+    <th>Fecha</th>
+    <th>Hora</th>
+  </tr>
+
+  <tr *ngFor="let cita of citas">
+    <td>{{ cita.mascota }}</td>
+    <td>{{ cita.veterinario }}</td>
+    <td>{{ cita.fecha }}</td>
+    <td>{{ cita.hora }}</td>
+  </tr>
+
+</table>
+
+<hr>
+
+<form [formGroup]="atencionForm" (ngSubmit)="guardar()">
+
+  <p>
+    <label>Mascota:</label><br>
+    <input type="text" formControlName="mascota">
+  </p>
+
+  <p>
+    <label>Veterinario:</label><br>
+    <select formControlName="veterinario">
+      <option value="">Seleccione</option>
+      <option>Dr. Pérez</option>
+      <option>Dra. Gómez</option>
+      <option>Dr. Torres</option>
+    </select>
+  </p>
+
+  <p>
+    <label>Peso:</label><br>
+    <input type="number" formControlName="peso">
+  </p>
+
+  <p>
+    <label>Temperatura:</label><br>
+    <input type="number" formControlName="temperatura">
+  </p>
+
+  <p>
+    <label>Diagnóstico:</label><br>
+    <textarea formControlName="diagnostico"></textarea>
+  </p>
+
+  <p>
+    <label>Tratamiento:</label><br>
+    <textarea formControlName="tratamiento"></textarea>
+  </p>
+
+  <p>
+    <label>Observaciones:</label><br>
+    <textarea formControlName="observaciones"></textarea>
+  </p>
+
+  <button type="submit">
+    Registrar Atención
+  </button>
+
+</form>

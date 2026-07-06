@@ -1,0 +1,37 @@
+<h2>Agenda de Citas</h2>
+
+<form [formGroup]="citaForm" (ngSubmit)="guardar()">
+
+  <p>
+    <label>Mascota:</label><br>
+    <input type="text" formControlName="mascota">
+  </p>
+
+  <p>
+    <label>Fecha:</label><br>
+    <input type="date" formControlName="fecha">
+  </p>
+
+  <p>
+    <label>Hora:</label><br>
+    <input type="time" formControlName="hora">
+  </p>
+
+  <p>
+    <label>Motivo:</label><br>
+    <textarea formControlName="motivo"></textarea>
+    <p>
+      <label>Veterinario:</label><br>
+      <select formControlName="veterinario">
+        <option value="">Seleccione</option>
+        <option>Dr. Pérez</option>
+        <option>Dra. Gómez</option>
+        <option>Dr. Torres</option>
+      </select>
+  </p>
+
+  <button type="submit">
+    Registrar Cita
+  </button>
+
+</form>
