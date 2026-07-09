@@ -1,0 +1,42 @@
+h2, h3 {
+  color: #1976d2;
+}
+
+form {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 600px;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 8px;
+}
+
+button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  background-color: #28a745;
+  color: white;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 10px;
+}

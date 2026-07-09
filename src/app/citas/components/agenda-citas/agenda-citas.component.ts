@@ -1,18 +1,39 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CitaService } from '../../services/cita.service';
+import { EstadoCitaPipe } from '../../../shared/pipes/estado-cita.pipe';
+import { ResaltarCitaDirective } from '../../../shared/directives/resaltar-cita.directive';
+import { Cita } from '../../models/cita';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+  FormsModule
+} from '@angular/forms';
 
 @Component({
   selector: 'app-agenda-citas',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    EstadoCitaPipe,
+    ResaltarCitaDirective
+  ],
   templateUrl: './agenda-citas.component.html',
   styleUrl: './agenda-citas.component.css'
 })
 export class AgendaCitasComponent {
 
   citaForm: FormGroup;
+  citas: Cita[] = [];
+  codigoBusqueda: string = '';
+  resultadoBusqueda: any = null;
+  fechaMinima: string = new Date()
+  .toISOString()
+  .split('T')[0];
 
   constructor(
     private fb: FormBuilder,
@@ -27,26 +48,42 @@ export class AgendaCitasComponent {
       veterinario: ['', Validators.required],
       estado: ['Pendiente']
     });
+    
+    this.citas = this.citaService.obtenerCitas();
 
   }
 
   guardar() {
 
-    if (this.citaForm.valid) {
+  if (this.citaForm.valid) {
 
-      this.citaService.agregarCita(
-        this.citaForm.value
-      );
+    const nuevaCita = {
+      codigo: this.citaService.generarCodigo(),
+      ...this.citaForm.value
+    };
 
-      console.log('Cita registrada:', this.citaForm.value);
+    this.citaService.agregarCita(
+      nuevaCita
+    );
 
-      alert('Cita registrada correctamente');
+    this.citas = this.citaService.obtenerCitas();
 
-      this.citaForm.reset({
-        estado: 'Pendiente'
-      });
+    console.log('Cita registrada:', nuevaCita);
 
-    }
+    alert('Cita registrada correctamente');
+
+    this.citaForm.reset({
+      estado: 'Pendiente'
+    });
+
+  }
+
+}
+  buscarCita() {
+
+    this.resultadoBusqueda = this.citas.find(
+      cita => cita.codigo === this.codigoBusqueda
+    );
 
   }
 

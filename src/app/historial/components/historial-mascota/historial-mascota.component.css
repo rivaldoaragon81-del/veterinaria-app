@@ -1,0 +1,19 @@
+h2 {
+  color: #6a1b9a;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  background-color: #6a1b9a;
+  color: white;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 10px;
+}

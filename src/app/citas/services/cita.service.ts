@@ -7,6 +7,20 @@ export class CitaService {
 
   citas: any[] = [];
 
+  private contador = 1;
+
+  generarCodigo(): string {
+
+    const codigo =
+      'COD' +
+      this.contador.toString().padStart(3, '0');
+
+    this.contador++;
+
+    return codigo;
+
+  }
+
   agregarCita(cita: any) {
     this.citas.push(cita);
   }

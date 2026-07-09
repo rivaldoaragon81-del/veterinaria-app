@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Mascota } from '../../models/mascota';
 
 @Component({
   selector: 'app-registro-mascota',
@@ -12,21 +13,34 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 export class RegistroMascotaComponent {
 
   mascotaForm: FormGroup;
+  mascotas: Mascota[] = [];
 
   constructor(private fb: FormBuilder) {
+
     this.mascotaForm = this.fb.group({
-      nombre: ['', Validators.required],
+      nombre: ['', [Validators.required, Validators.minLength(3)]],
       especie: ['', Validators.required],
       raza: ['', Validators.required],
-      edad: ['', Validators.required],
-      propietario: ['', Validators.required]
+      edad: ['', [Validators.required, Validators.min(1)]],
+      propietario: ['', [Validators.required, Validators.minLength(3)]]
     });
+
   }
 
   guardar() {
+
     if (this.mascotaForm.valid) {
-      console.log(this.mascotaForm.value);
+
+      this.mascotas.push(
+        this.mascotaForm.value as Mascota
+      );
+
       alert('Mascota registrada correctamente');
+
+      this.mascotaForm.reset();
+
     }
+
   }
+
 }

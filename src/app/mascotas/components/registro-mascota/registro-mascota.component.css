@@ -1,0 +1,53 @@
+h2 {
+  color: #1976d2;
+}
+
+form {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 500px;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+}
+
+button {
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #125ea7;
+}
+
+button:disabled {
+  background-color: gray;
+}
+
+small {
+  color: red;
+}
+
+table {
+  margin-top: 20px;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th {
+  background-color: #1976d2;
+  color: white;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+}

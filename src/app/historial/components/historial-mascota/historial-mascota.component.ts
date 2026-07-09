@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HistorialService } from '../../services/historial.service';
+import { Historial } from '../../models/historial';
 
 @Component({
   selector: 'app-historial-mascota',
@@ -11,7 +12,7 @@ import { HistorialService } from '../../services/historial.service';
 })
 export class HistorialMascotaComponent {
 
-  historial: any[] = [];
+  historial: Historial[] = [];
 
   constructor(private historialService: HistorialService) {
     this.historial = this.historialService.obtenerHistorial();

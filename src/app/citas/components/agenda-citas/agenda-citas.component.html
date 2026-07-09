@@ -9,7 +9,10 @@
 
   <p>
     <label>Fecha:</label><br>
-    <input type="date" formControlName="fecha">
+    <input
+  type="date"
+  formControlName="fecha"
+  [min]="fechaMinima">
   </p>
 
   <p>
@@ -20,14 +23,16 @@
   <p>
     <label>Motivo:</label><br>
     <textarea formControlName="motivo"></textarea>
-    <p>
-      <label>Veterinario:</label><br>
-      <select formControlName="veterinario">
-        <option value="">Seleccione</option>
-        <option>Dr. Pérez</option>
-        <option>Dra. Gómez</option>
-        <option>Dr. Torres</option>
-      </select>
+  </p>
+
+  <p>
+    <label>Veterinario:</label><br>
+    <select formControlName="veterinario">
+      <option value="">Seleccione</option>
+      <option>Dr. Pérez</option>
+      <option>Dra. Gómez</option>
+      <option>Dr. Torres</option>
+    </select>
   </p>
 
   <button type="submit">
@@ -35,3 +40,77 @@
   </button>
 
 </form>
+
+<hr>
+<hr>
+
+<h3>Buscar cita por código</h3>
+
+<input
+  type="text"
+  [(ngModel)]="codigoBusqueda"
+  placeholder="Ejemplo: COD001">
+
+<button
+  type="button"
+  (click)="buscarCita()">
+  Buscar
+</button>
+<div *ngIf="resultadoBusqueda">
+
+  <h4>Cita encontrada</h4>
+
+  <p>
+    <strong>Código:</strong>
+    {{ resultadoBusqueda.codigo }}
+  </p>
+
+  <p>
+    <strong>Mascota:</strong>
+    {{ resultadoBusqueda.mascota }}
+  </p>
+
+  <p>
+    <strong>Fecha:</strong>
+    {{ resultadoBusqueda.fecha }}
+  </p>
+
+  <p>
+    <strong>Hora:</strong>
+    {{ resultadoBusqueda.hora }}
+  </p>
+
+  <p>
+    <strong>Veterinario:</strong>
+    {{ resultadoBusqueda.veterinario }}
+  </p>
+
+</div>
+
+<h3>Citas Registradas</h3>
+
+<table border="1">
+
+  <thead>
+    <tr>
+      <th>Código</th>
+      <th>Mascota</th>
+      <th>Fecha</th>
+      <th>Hora</th>
+      <th>Veterinario</th>
+      <th>Estado</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let cita of citas" appResaltarCita>
+      <td>{{ cita.codigo }}</td>
+      <td>{{ cita.mascota }}</td>
+      <td>{{ cita.fecha }}</td>
+      <td>{{ cita.hora }}</td>
+      <td>{{ cita.veterinario }}</td>
+      <td>{{ cita.estado | estadoCita }}</td>
+    </tr>
+  </tbody>
+
+</table>
