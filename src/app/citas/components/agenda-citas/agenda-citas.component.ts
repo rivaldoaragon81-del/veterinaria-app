@@ -34,6 +34,11 @@ export class AgendaCitasComponent {
   fechaMinima: string = new Date()
   .toISOString()
   .split('T')[0];
+  fechaMaxima: string = (() => {
+  const fecha = new Date();
+  fecha.setDate(fecha.getDate() + 7);
+  return fecha.toISOString().split('T')[0];
+})();
 
   constructor(
     private fb: FormBuilder,

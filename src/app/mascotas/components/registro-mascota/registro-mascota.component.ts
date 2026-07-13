@@ -22,7 +22,8 @@ export class RegistroMascotaComponent {
       especie: ['', Validators.required],
       raza: ['', Validators.required],
       edad: ['', [Validators.required, Validators.min(1)]],
-      propietario: ['', [Validators.required, Validators.minLength(3)]]
+      propietario: ['', [Validators.required, Validators.minLength(3)]],
+      correo: ['', [Validators.required, Validators.email]],
     });
 
   }

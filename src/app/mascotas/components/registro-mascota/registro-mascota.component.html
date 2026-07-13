@@ -7,6 +7,7 @@
     <input type="text" formControlName="nombre">
 
     <br>
+
     <small *ngIf="mascotaForm.get('nombre')?.errors?.['required'] && mascotaForm.get('nombre')?.touched">
       El nombre es obligatorio
     </small>
@@ -21,6 +22,7 @@
     <input type="text" formControlName="especie">
 
     <br>
+
     <small *ngIf="mascotaForm.get('especie')?.invalid && mascotaForm.get('especie')?.touched">
       La especie es obligatoria
     </small>
@@ -28,9 +30,20 @@
 
   <p>
     <label>Raza:</label><br>
-    <input type="text" formControlName="raza">
+
+    <select formControlName="raza">
+      <option value="">Seleccione una raza</option>
+      <option>Labrador</option>
+      <option>Golden Retriever</option>
+      <option>Pastor Alemán</option>
+      <option>Poodle</option>
+      <option>Bulldog</option>
+      <option>Mestizo</option>
+      <option>Otro</option>
+    </select>
 
     <br>
+
     <small *ngIf="mascotaForm.get('raza')?.invalid && mascotaForm.get('raza')?.touched">
       La raza es obligatoria
     </small>
@@ -38,9 +51,11 @@
 
   <p>
     <label>Edad:</label><br>
+
     <input type="number" formControlName="edad">
 
     <br>
+
     <small *ngIf="mascotaForm.get('edad')?.errors?.['required'] && mascotaForm.get('edad')?.touched">
       La edad es obligatoria
     </small>
@@ -52,9 +67,11 @@
 
   <p>
     <label>Propietario:</label><br>
+
     <input type="text" formControlName="propietario">
 
     <br>
+
     <small *ngIf="mascotaForm.get('propietario')?.errors?.['required'] && mascotaForm.get('propietario')?.touched">
       El propietario es obligatorio
     </small>
@@ -64,11 +81,28 @@
     </small>
   </p>
 
+  <p>
+    <label>Correo Electrónico:</label><br>
+
+    <input type="email" formControlName="correo">
+
+    <br>
+
+    <small *ngIf="mascotaForm.get('correo')?.errors?.['required'] && mascotaForm.get('correo')?.touched">
+      El correo es obligatorio
+    </small>
+
+    <small *ngIf="mascotaForm.get('correo')?.errors?.['email'] && mascotaForm.get('correo')?.touched">
+      Correo electrónico inválido
+    </small>
+  </p>
+
   <button type="submit" [disabled]="mascotaForm.invalid">
     Registrar Mascota
   </button>
 
 </form>
+
 <hr>
 
 <h3>Mascotas Registradas</h3>
@@ -82,6 +116,7 @@
       <th>Raza</th>
       <th>Edad</th>
       <th>Propietario</th>
+      <th>Correo</th>
     </tr>
   </thead>
 
@@ -92,6 +127,7 @@
       <td>{{ mascota.raza }}</td>
       <td>{{ mascota.edad }}</td>
       <td>{{ mascota.propietario }}</td>
+      <td>{{ mascota.correo }}</td>
     </tr>
   </tbody>
 

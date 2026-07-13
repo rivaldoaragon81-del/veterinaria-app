@@ -5,24 +5,53 @@
   <p>
     <label>Mascota:</label><br>
     <input type="text" formControlName="mascota">
+
+    <span *ngIf="citaForm.get('mascota')?.invalid && citaForm.get('mascota')?.touched">
+      <small style="color:red; display:block;">
+        La mascota es obligatoria
+      </small>
+    </span>
   </p>
 
   <p>
     <label>Fecha:</label><br>
-    <input
-  type="date"
-  formControlName="fecha"
-  [min]="fechaMinima">
+    <input type="date" 
+    formControlName="fecha" 
+    [min]="fechaMinima"
+    [max]="fechaMaxima">
+
+    <span *ngIf="citaForm.get('fecha')?.invalid && citaForm.get('fecha')?.touched">
+      <small style="color:red; display:block;">
+        La fecha es obligatoria
+      </small>
+       <span *ngIf="citaForm.get('fecha')?.value && citaForm.get('fecha')?.value > fechaMaxima">
+    <small style="color:red; display:block;">
+      Solo se permiten citas hasta 7 días después de la fecha actual
+    </small>
+  </span>
+    </span>
   </p>
 
   <p>
     <label>Hora:</label><br>
     <input type="time" formControlName="hora">
+
+    <span *ngIf="citaForm.get('hora')?.invalid && citaForm.get('hora')?.touched">
+      <small style="color:red; display:block;">
+        La hora es obligatoria
+      </small>
+    </span>
   </p>
 
   <p>
     <label>Motivo:</label><br>
     <textarea formControlName="motivo"></textarea>
+
+    <span *ngIf="citaForm.get('motivo')?.invalid && citaForm.get('motivo')?.touched">
+      <small style="color:red; display:block;">
+        El motivo es obligatorio
+      </small>
+    </span>
   </p>
 
   <p>
@@ -33,6 +62,12 @@
       <option>Dra. Gómez</option>
       <option>Dr. Torres</option>
     </select>
+
+    <span *ngIf="citaForm.get('veterinario')?.invalid && citaForm.get('veterinario')?.touched">
+      <small style="color:red; display:block;">
+        Debe seleccionar un veterinario
+      </small>
+    </span>
   </p>
 
   <button type="submit">
@@ -40,77 +75,3 @@
   </button>
 
 </form>
-
-<hr>
-<hr>
-
-<h3>Buscar cita por código</h3>
-
-<input
-  type="text"
-  [(ngModel)]="codigoBusqueda"
-  placeholder="Ejemplo: COD001">
-
-<button
-  type="button"
-  (click)="buscarCita()">
-  Buscar
-</button>
-<div *ngIf="resultadoBusqueda">
-
-  <h4>Cita encontrada</h4>
-
-  <p>
-    <strong>Código:</strong>
-    {{ resultadoBusqueda.codigo }}
-  </p>
-
-  <p>
-    <strong>Mascota:</strong>
-    {{ resultadoBusqueda.mascota }}
-  </p>
-
-  <p>
-    <strong>Fecha:</strong>
-    {{ resultadoBusqueda.fecha }}
-  </p>
-
-  <p>
-    <strong>Hora:</strong>
-    {{ resultadoBusqueda.hora }}
-  </p>
-
-  <p>
-    <strong>Veterinario:</strong>
-    {{ resultadoBusqueda.veterinario }}
-  </p>
-
-</div>
-
-<h3>Citas Registradas</h3>
-
-<table border="1">
-
-  <thead>
-    <tr>
-      <th>Código</th>
-      <th>Mascota</th>
-      <th>Fecha</th>
-      <th>Hora</th>
-      <th>Veterinario</th>
-      <th>Estado</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr *ngFor="let cita of citas" appResaltarCita>
-      <td>{{ cita.codigo }}</td>
-      <td>{{ cita.mascota }}</td>
-      <td>{{ cita.fecha }}</td>
-      <td>{{ cita.hora }}</td>
-      <td>{{ cita.veterinario }}</td>
-      <td>{{ cita.estado | estadoCita }}</td>
-    </tr>
-  </tbody>
-
-</table>

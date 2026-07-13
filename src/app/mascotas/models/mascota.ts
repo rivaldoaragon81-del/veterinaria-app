@@ -4,4 +4,5 @@ export interface Mascota {
   raza: string;
   edad: number;
   propietario: string;
+  correo: string;
 }
