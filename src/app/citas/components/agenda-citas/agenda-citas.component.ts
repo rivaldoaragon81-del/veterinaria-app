@@ -45,6 +45,8 @@ export class AgendaCitasComponent {
     private citaService: CitaService
   ) {
 
+    // FORMULARIO DE CITAS CON VALIDACIONES
+
     this.citaForm = this.fb.group({
       mascota: ['', Validators.required],
       fecha: ['', Validators.required],
@@ -58,20 +60,22 @@ export class AgendaCitasComponent {
 
   }
 
+    /// LOGICA DEL REGISTRO DE CITAS
+
   guardar() {
 
   if (this.citaForm.valid) {
 
     const nuevaCita = {
-      codigo: this.citaService.generarCodigo(),
+      codigo: this.citaService.generarCodigo(),  //genera cofigo automatico
       ...this.citaForm.value
     };
 
-    this.citaService.agregarCita(
+    this.citaService.agregarCita(  //guarda la citta
       nuevaCita
     );
 
-    this.citas = this.citaService.obtenerCitas();
+    this.citas = this.citaService.obtenerCitas();//  se actualiza la cita
 
     console.log('Cita registrada:', nuevaCita);
 

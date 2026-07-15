@@ -16,6 +16,8 @@ export class RegistroMascotaComponent {
   mascotas: Mascota[] = [];
 
   constructor(private fb: FormBuilder) {
+    
+    // FORMULARIO REACTIVO CON VALIDACIONES
 
     this.mascotaForm = this.fb.group({
       nombre: ['', [Validators.required, Validators.minLength(3)]],
@@ -27,7 +29,7 @@ export class RegistroMascotaComponent {
     });
 
   }
-
+    // LOGICA DEL REGISTRO DE MASCOTAS
   guardar() {
 
     if (this.mascotaForm.valid) {

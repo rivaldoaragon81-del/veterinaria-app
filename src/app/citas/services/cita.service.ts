@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class CitaService {
+export class CitaService { //servicio que administra las citas....
 
   citas: any[] = [];
 

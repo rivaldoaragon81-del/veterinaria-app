@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class EstadoCitaPipe implements PipeTransform {
 
-  transform(value: string): string {
+  transform(value: string): string {   ///pipe personalizado para formatear el estado,
 
     switch (value) {
 
